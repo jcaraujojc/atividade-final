@@ -1,0 +1,32 @@
+{
+  "name": "atividade-final",
+  "version": "1.0.0",
+  "description": "Projeto Final",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcaraujojc/atividade-final.git"
+  },
+  "keywords": [
+    "Pet",
+    "shop"
+  ],
+  "author": "João Carlos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcaraujojc/atividade-final/issues"
+  },
+  "homepage": "https://github.com/jcaraujojc/atividade-final#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cookies-parser": "^1.2.0",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "path": "^0.12.7"
+  }
+}
