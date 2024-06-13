@@ -320,22 +320,22 @@ function autenticarUsuario(req, resp) {
 
 let listaAdocao = [];
 
-// Função para renderizar a página de desejo de adoção
+
 function renderAdocaoPage(req, res) {
     let interessadosOptions = '<option value="">Escolha um interessado</option>';
     let petsOptions = '<option value="">Escolha um pet</option>';
 
-    // Gerar as opções para o select de interessados
+
     listaInteressados.forEach(interessado => {
         interessadosOptions += `<option value="${interessado.nome}">${interessado.nome}</option>`;
     });
 
-    // Gerar as opções para o select de pets
+    
     listaPet.forEach(pet => {
         petsOptions += `<option value="${pet.nomeCachorro}">${pet.nomeCachorro}</option>`;
     });
 
-    // Gerar a lista de interessados
+    
     let interessadosList = '';
     listaInteressados.forEach(interessado => {
         interessadosList += `
@@ -346,7 +346,7 @@ function renderAdocaoPage(req, res) {
             </tr>`;
     });
 
-    // Gerar a lista de pets
+   
     let petsList = '';
     listaPet.forEach(pet => {
         petsList += `
@@ -357,7 +357,7 @@ function renderAdocaoPage(req, res) {
             </tr>`;
     });
 
-    // HTML para a página de desejo de adoção
+
     const adocaoPageHTML = `
     <!DOCTYPE html>
     <html lang="pt-br">
@@ -423,7 +423,7 @@ function renderAdocaoPage(req, res) {
     res.send(adocaoPageHTML);
 }
 
-// Função para registrar o desejo de adoção
+
 function registrarAdocao(req, res) {
     const interessado = req.body.interessado;
     const pet = req.body.pet;
@@ -441,7 +441,7 @@ function registrarAdocao(req, res) {
     }
 }
 
-// Função para listar os desejos de adoção
+
 function listarAdocoes(req, res) {
     let htmlResposta = `<!DOCTYPE html>
     <html lang="pt-br">
@@ -484,7 +484,7 @@ function listarAdocoes(req, res) {
     res.send(htmlResposta);
 }
 
-// Definir as rotas no app Express
+
 app.get('/adotarPet', renderAdocaoPage);
 app.post('/registrarAdocao', registrarAdocao);
 app.get('/listarAdocoes', listarAdocoes);
@@ -506,11 +506,11 @@ app.get('/logout', (req, resp) => {
     resp.redirect('/login.html');
 });
 
-// Rota para a raiz do aplicativo
-app.get('/', (req, res) => {
+
+app.get('/', usuarioEstaAutenticado, (req, res) => {
     const ultimoAcesso = req.cookies.dataUltimoAcesso;
 
-    // Renderizar a página HTML do menu e incluir a data do último acesso
+    
     res.send(`
         <!DOCTYPE html>
         <html lang="pt-br">
@@ -616,7 +616,7 @@ app.get('/', (req, res) => {
                         <ul class="dropdown-menu justify-content-center" aria-labelledby="listagemDropdown">
                             <li>
                                 <a class="nav-link dropdown-item" href="/listarInteressados">Listagem de
-                                    Intererssados</a>
+                                    Interessados</a>
                                 <a class="nav-link dropdown-item" href="/listarPet">Listagem de
                                         pet</a>
                             </li>
