@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
+import moment from 'moment-timezone';
 
 const host = '0.0.0.0';
 const porta = 3000;
@@ -21,6 +22,11 @@ app.use(session({
     }
 }));
 app.use(cookieParser());
+app.use((req, res, next) => {
+    const agora = moment().tz('America/Sao_Paulo').format('MM/DD/YYYY, h:mm:ss A');
+    res.cookie('dataUltimoAcesso', agora, { maxAge: 1000 * 60 * 30 });
+    next();
+});
 
 function usuarioEstaAutenticado(req, resp, next) {
     if (req.session.usuarioAutenticado) {
